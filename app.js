@@ -27,20 +27,19 @@ app.post("/register",(req,res)=>{
     });
     newUser.save();
     res.render("secrets");
-    });
-    app.post("/login",(req,res)=>{
+});
+app.post("/login",(req,res)=>{
         const username = req.body.username;
         const password= req.body.password;
     item.findOne({email:username})
-            .then(function(err){
-            console.log(err)
-        })
-            .catch(function(foundUser)
-            {foundUser.password === password},
-            ); 
-            res.render("secrets");
-        
-    });
+        .then(function(foundUser){
+                if(foundUser.password === password){
+                    res.render("secrets")
+                }
+            })
+        .catch;
+        })     
+ 
 app.get("/login",function(req,res){
     res.render("login");
 });
